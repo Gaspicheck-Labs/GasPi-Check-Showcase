@@ -1,20 +1,20 @@
-# 🌿 GasPi-Check Showcase V9.5
+# 🌿 GasPi-Check
 
-### *Collective intelligence against food waste.*
-
-![Version](https://img.shields.io/badge/version-9.5-4CAF50?style=flat-square)
+![Version](https://img.shields.io/badge/version-9.5.5-4CAF50?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS-blue?style=flat-square)
-![Stack](https://img.shields.io/badge/stack-React%20Native%20%2F%20Firebase-orange?style=flat-square)
+![Stack](https://img.shields.io/badge/stack-React%20Native%20%2F%20Expo%20%2F%20TypeScript-orange?style=flat-square)
 ![Architecture](https://img.shields.io/badge/architecture-Local%20First%20Cloud%20Sync-purple?style=flat-square)
 ![License](https://img.shields.io/badge/license-Proprietary-red?style=flat-square)
-![Commits](https://img.shields.io/badge/commits-95-lightgrey?style=flat-square)
+![Commits](https://img.shields.io/badge/commits-280+-lightgrey?style=flat-square)
 
 > Every gram of food saved is a gram of CO₂ that never existed.
 > GasPi-Check turns your fridge into a behavioral data engine — and makes sustainability a multiplayer game.
 
+**🌐 [gaspicheck.com](https://gaspicheck.com) · 📧 [contact@gaspicheck.com](mailto:contact@gaspicheck.com)**
+
 ---
 
-## 📱 Interface — V9.5
+## 📱 The app
 
 | Login | Product Scanner | My Fridge |
 | :---: | :---: | :---: |
@@ -37,86 +37,73 @@ A **behavioral change engine** — with hardcore gamification, family sync, and 
 
 ---
 
-## ⚙️ Tech Stack
+## 🎮 Hardcore gamification
 
-| Layer | Technology |
+10 prestige grades. Real effort economy. No XP for buying — only for acting responsibly.
+
+| Action | XP |
 |---|---|
-| Mobile | React Native · Expo · TypeScript |
-| Auth | Firebase Auth · Google Sign-In (V9.5) |
-| Database | Firestore (real-time onSnapshot) |
-| Local Cache | AsyncStorage — Local First architecture |
-| Barcode | Open Food Facts API · EAN global index |
-| CO₂ Engine | Hybrid model — Agribalyse + per-category fallback |
-| Analytics | Custom pipeline → Firestore → BigQuery (ready) |
-| Privacy | Rotating anonymous IDs · GDPR Kill-Switch |
+| Consume a green product before expiry | +50 XP |
+| Consume an orange product | +20 XP |
+| Voluntary waste (with confirmation) | −200 XP |
+| Automatic expiry penalty | −100 XP |
+
+10 grades from **"Stock Novice"** to **"Eternal Legion"** · Power Cards · ×1.5 streak multiplier · 12 monthly Eco-Legacy challenges · Family XP shared in real time
 
 ---
 
-## 💎 Core Features — V9.5
+## 🚀 Core features
 
-### 1. 🎮 Hardcore Gamification Engine *(Zen-Eco)*
-The reward system is built around a real effort economy — no XP for buying, only for acting responsibly.
+### 🏗️ Local First architecture
+Every write hits AsyncStorage first — zero perceived latency. Full offline mode, auto-sync on reconnect. Inspired by Notion, Linear, Figma.
 
-- **+50 XP** per GREEN consumption · **+20 XP** per ORANGE consumption
-- **−200 XP** voluntary waste penalty (with confirmation modal)
-- **−100 XP** automatic expiry penalty — applied once, on first detection
-- **10 prestige grades**: *"Stock Novice"* → *"Eternal Legion"* → *"Immortal"*
-- **Power Cards** system for engagement spikes (Turbo XP, Reset, Streak Shield)
-- **Streak multiplier**: ≥7 days clean → ×1.5 XP on all actions
-- Weekly recap notification every Monday — personalized CO₂ impact message
+### 👨‍👩‍👧 Family fridge sync
+Real-time inventory sharing across up to 6 members via Firestore onSnapshot. "Added by [name]" on every food card. Shared family XP.
 
-### 2. 👨‍👩‍👧 Family Fridge Sync
-Waste reduction is a team sport.
+### 🔐 Privacy-first · GDPR
+Rotating anonymous IDs every 28 days. Zero GPS, zero email in analytics. One-tap full data wipe — cloud + local. GDPR Art. 17 compliant.
 
-- Real-time inventory sharing across **up to 6 family members** via Firestore `onSnapshot`
-- Shared family XP counter — every action visible to the group
-- "Added by [name]" attribution on every food card
-- Anti-bruteforce invite code system (5 attempts → 10 min lockout)
-- Correct logout flow: `unsubscribeFamilyRef` called synchronously **before** `signOut` — zero `permission-denied` errors
+### 🌱 CO₂ engine — Agribalyse
+Hybrid model: Agribalyse data per product when available, per-category fallback. Every action increments a scientifically-grounded CO₂ counter.
 
-### 3. 🔐 Privacy-First Architecture *("Silicon Valley" Standard)*
-Trust is non-negotiable.
+### 📊 BigQuery analytics pipeline
+3 Firebase→BigQuery extensions. 37-column analytics view. Weekly + monthly snapshots. GDPR TTL enforced at 24 months automatically.
 
-- **GDPR Kill-Switch**: full data wipe — cloud + local — in one tap
-- **Zero nominal tracking**: rotating anonymous IDs regenerated every 4 weeks
-- Data minimization by design: no GPS, no email in analytics, no product photo in Firestore
-- Consent-gated analytics: behavioral data only sent when user explicitly opts in
-- Household size field: optional, never mandatory
-
-### 4. 📊 Barcode Analytics V2 — The Data Moat
-Every scan is an event. Every event is intelligence.
-
-- EAN-level product indexing: brand, nutriscore, ecoscore, NOVA score, organic label, format
-- Behavioral enrichment: meal slot (breakfast/lunch/snack/dinner), days-to-waste, household size
-- Auto-computed aggregates per product: `wasteRate`, `avgDaysFromAddToConsume`, `byMealSlot`, `byDayOfWeek`
-- Fully GDPR-compliant: EAN data is not personal data — no additional consent required
-- Pipeline ready for BigQuery export (1-click Firebase extension)
-
-### 5. 🏗️ Local First, Cloud Sync Architecture
-Inspired by Notion, Linear, and Figma.
-
-- **Every write hits AsyncStorage first** — zero perceived latency
-- **Firestore write is fire-and-forget** in the background
-- Cold start on empty device → pulls from Firestore → fills AsyncStorage → renders
-- Offline mode: full app functionality, auto-sync on reconnect
-- Last-write-wins conflict resolution with `serverTimestamp()`
+### 🔔 Smart notifications
+J-1 and J-0 expiry alerts per product. Monday recap every week. Android priority MAX channel. Hash guard prevents duplicates.
 
 ---
 
-## 📈 Data Moat — The Business Angle
+## 💰 The data moat
 
-GasPi-Check captures something no company can buy elsewhere:
-**real behavioral data on food waste — at the exact moment it happens, inside real fridges.**
+GasPi-Check captures what no company can buy elsewhere — **real behavioral data on food waste, at the exact moment it happens, inside real fridges.**
 
 Nielsen and Kantar run panels of 2,000 people max, with declarative data.
 GasPi-Check is behavioral, real-scale, EAN-level, timestamped.
 
-| Metric | Projection (5K active users) |
+| Metric | At 5,000 active users |
 |---|---|
 | Events / month | ~780,000 |
+| Dimensions per event | 37 |
 | One-shot brand report | €20K – €300K |
 | Annual monitoring deal | up to €500K |
-| Target clients | Danone · Nestlé · Carrefour · ADEME · WWF |
+| Target clients | Danone · Nestlé · Carrefour · Leclerc · ADEME · WWF |
+
+---
+
+## ⚙️ Tech stack
+
+| Layer | Technology |
+|---|---|
+| Mobile | React Native 0.83 · Expo SDK 55 · TypeScript |
+| Auth | Firebase Auth · Google Sign-In · Email verification |
+| Database | Firestore — real-time onSnapshot, production security rules |
+| Local cache | AsyncStorage — Local First, always written first |
+| Barcode | Open Food Facts API — EAN global index, label enrichment |
+| CO₂ | Agribalyse hybrid engine + per-category fallback |
+| Analytics | Custom pipeline → Firestore → BigQuery (europe-west3) |
+| Monitoring | Sentry — ErrorBoundary, DSN production, email alerts |
+| Build | EAS Build · com.gaspicheck.app · versionCode 2 |
 
 ---
 
@@ -124,19 +111,19 @@ GasPi-Check is behavioral, real-scale, EAN-level, timestamped.
 
 | Version | Status | Highlights |
 |---|---|---|
-| V1.0 → V2.9 | ✅ Done | Core gamification, barcode scanner, statistics engine |
-| V3.5 → V4.5 | ✅ Done | Streak system, trophies, Power Cards, CO₂ hybrid engine |
-| V5.0 → V6.5 | ✅ Done | Push notifications sentinel, splash screen, Android adaptive icons |
-| V7.0 | ✅ Done | Firebase Auth, profile screen, CO₂ badges, GDPR consent |
-| V8.0 | ✅ Done | Local First Cloud Sync — multi-device, persistent sessions |
-| V8.5 | ✅ Done | Barcode Analytics V2 pipeline · Family Fridge (6 members) |
-| **V9.5** | ✅ **Done** | **Google Sign-In · GDPR Kill-Switch · Community Impact screen** |
-| V10.0 | 🔜 Planned | Landing page · App Store submission · RSE data export |
+| V1.0 → V6.5 | ✅ Done | Core gamification, barcode scanner, CO₂ engine, notifications |
+| V7.0 → V8.0 | ✅ Done | Firebase Auth · Local First Cloud Sync · multi-device |
+| V8.5 | ✅ Done | Barcode Analytics V2 · Family Fridge 6 members real-time |
+| V9.5 | ✅ Done | Google Sign-In · GDPR Kill-Switch · Community Impact screen |
+| V9.5.5 | ✅ Done | BigQuery pipeline · 37 analytics fields · Sentry · 5 Cloud Functions |
+| **V10.0** | 🔜 **Coming** | **Google Play Store · Looker Studio dashboard · iOS TestFlight** |
 
 ---
 
 ## 👤 Author
 
-**Gaspicheck-Labs** — Solo builder · 95 commits · 0 burnout.
+**Gaspicheck-Labs** — Solo builder · 280+ commits · 0 burnout.
 
 *Built with React Native, Firebase, and an unreasonable amount of conviction.*
+
+**🌐 [gaspicheck.com](https://gaspicheck.com) · 📧 [contact@gaspicheck.com](mailto:contact@gaspicheck.com)**
